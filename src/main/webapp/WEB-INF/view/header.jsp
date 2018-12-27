@@ -1,9 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <c:set value="${pageContext.request.contextPath}" var="contextPath" />
 <c:set value="${contextPath}/resources" var="resPath" />
-
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="${resPath}/style.css" rel="stylesheet" type="text/css" />
     <style>
         body, ul{
@@ -61,17 +63,21 @@
 <body>
 
 <header>
+    <span>
+        <a href="?lang=en">en</a>
+        <a href="?lang=ru">ru</a>
+    </span>
     <ul id="top-menu">
-        <li><a href="<c:url value="/"/>">Posts</a></li>
-        <li><a href="<c:url value="/category"/>">Categories</a></li>
-        <li><a href="<c:url value="/author"/>">Authors</a></li>
+        <li><a href="<c:url value="/"/>"><spring:message code="menu_posts" /></a></li>
+        <li><a href="<c:url value="/category"/>"><spring:message code="menu_categories" /></a></li>
+        <li><a href="<c:url value="/author"/>"><spring:message code="menu_authors" /></a></li>
         <c:set value="${sessionScope.get(\"userId\")}" var="userId" />
         <c:choose>
             <c:when test="${userId == null}">
-                <li><a href="<c:url value="/auth/login"/>">Login</a></li>
+                <li><a href="<c:url value="/auth/login"/>"><spring:message code="menu_login" /></a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="<c:url value="/auth/logout"/>">Logout</a></li>
+                <li><a href="<c:url value="/auth/logout"/>"><spring:message code="menu_logout" /></a></li>
             </c:otherwise>
         </c:choose>
     </ul>
