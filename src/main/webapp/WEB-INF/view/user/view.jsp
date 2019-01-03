@@ -3,11 +3,11 @@
 <table border="1" cellspacing="0" cellpadding="0">
     <tr>
         <td>ID</td>
-        <td>${author.id}</td>
+        <td>${user.id}</td>
     </tr>
     <tr>
         <td>NAME</td>
-        <td>${author.name}</td>
+        <td>${user.name}</td>
     </tr>
 </table>
 <c:import url="../footer.jsp" />

@@ -12,7 +12,7 @@
 
     <tr>
         <td>AUTHOR</td>
-        <td>${post.author.name}</td>
+        <td>${post.user.name}</td>
     </tr>
 
     <tr>

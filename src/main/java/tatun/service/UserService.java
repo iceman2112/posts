@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import tatun.model.User;
 import tatun.repository.UserRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -13,8 +16,25 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public void save(User category) {
+        userRepository.save(category);
+    }
+
+    public User findById(int id) {
+        Optional<User> optional = userRepository.findById(id);
+        return optional.get();
+    }
+
+    public void delete(User user) {
+        userRepository.delete(user);
+
+    }
     public User initUser(String login, String password) {
         User user = userRepository.findByLogin(login);
         if (user != null) return user;

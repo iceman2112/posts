@@ -14,7 +14,7 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
-    private Author author;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
@@ -36,12 +36,12 @@ public class Post {
         this.content = content;
     }
 
-    public Author getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Category getCategory() {

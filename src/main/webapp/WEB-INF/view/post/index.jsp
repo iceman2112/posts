@@ -14,7 +14,7 @@
         <tr>
             <td>${post.id}</td>
             <td>${post.category.name}</td>
-            <td>${post.author.name}</td>
+            <td>${post.user.name}</td>
             <td>${post.content}</td>
             <td>
                 <a class="button" href="<c:url value="/post/edit/${post.id}" />"><spring:message code="button_edit" /></a>

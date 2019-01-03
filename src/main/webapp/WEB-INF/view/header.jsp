@@ -70,7 +70,7 @@
     <ul id="top-menu">
         <li><a href="<c:url value="/"/>"><spring:message code="menu_posts" /></a></li>
         <li><a href="<c:url value="/category"/>"><spring:message code="menu_categories" /></a></li>
-        <li><a href="<c:url value="/author"/>"><spring:message code="menu_authors" /></a></li>
+        <li><a href="<c:url value="/user"/>"><spring:message code="menu_authors" /></a></li>
         <c:set value="${sessionScope.get(\"userId\")}" var="userId" />
         <c:choose>
             <c:when test="${userId == null}">

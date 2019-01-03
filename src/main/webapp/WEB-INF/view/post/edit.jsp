@@ -14,8 +14,8 @@
 
     <select name="authorId">
         <option value="0" selected>Select category</option>
-        <c:forEach items="${authorList}" var="author"></audio>">
-            <option value="${author.id}">${author.name}</option>
+        <c:forEach items="${userList}" var="user"></audio>">
+            <option value="${user.id}">${user.name}</option>
         </c:forEach>
     </select>
 

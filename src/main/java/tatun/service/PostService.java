@@ -2,7 +2,6 @@ package tatun.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tatun.model.Author;
 import tatun.model.Post;
 import tatun.repository.PostRepository;
 

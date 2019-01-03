@@ -6,16 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import tatun.model.Author;
+import tatun.model.User;
 import tatun.model.Category;
 import tatun.model.Post;
-import tatun.service.AuthorService;
+import tatun.service.UserService;
 import tatun.service.CategoryService;
 import tatun.service.PostService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -28,7 +26,7 @@ public class PostController {
     private CategoryService categoryService;
 
     @Autowired
-    private AuthorService authorService;
+    private UserService userService;
 
     private ModelAndView getModelForEdit() {
         ModelAndView modelAndView = new ModelAndView("post/edit");
@@ -36,8 +34,8 @@ public class PostController {
         List<Category> categoryList = categoryService.findAll();
         modelAndView.addObject("categoryList", categoryList);
 
-        List<Author> authorList = authorService.findAll();
-        modelAndView.addObject("authorList", authorList);
+        List<User> userList = userService.findAll();
+        modelAndView.addObject("authorList", userList);
 
         modelAndView.addObject("post", new Post());
 
@@ -73,9 +71,9 @@ public class PostController {
             post.setCategory(category);
         }
 
-        Author author = authorService.findById(authorId);
-        if (author != null) {
-            post.setAuthor(author);
+        User user = userService.findById(authorId);
+        if (user != null) {
+            post.setUser(user);
         }
 
         postService.save(post);
