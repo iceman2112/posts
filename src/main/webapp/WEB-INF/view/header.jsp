@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set value="${pageContext.request.contextPath}" var="contextPath" />
 <c:set value="${contextPath}/resources" var="resPath" />
 <html>
@@ -71,15 +72,16 @@
         <li><a href="<c:url value="/"/>"><spring:message code="menu_posts" /></a></li>
         <li><a href="<c:url value="/category"/>"><spring:message code="menu_categories" /></a></li>
         <li><a href="<c:url value="/user"/>"><spring:message code="menu_authors" /></a></li>
-        <c:set value="${sessionScope.get(\"userId\")}" var="userId" />
-        <c:choose>
-            <c:when test="${userId == null}">
-                <li><a href="<c:url value="/auth/login"/>"><spring:message code="menu_login" /></a></li>
-            </c:when>
-            <c:otherwise>
-                <li><a href="<c:url value="/auth/logout"/>"><spring:message code="menu_logout" /></a></li>
-            </c:otherwise>
-        </c:choose>
+        <sec:authorize access="isAuthenticated()">
+            <li>
+                <a href="<c:url value="/logout"/>">
+                    <spring:message code="menu_logout"/>(<sec:authentication property="name" />)
+                </a>
+            </li>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+            <li><a href="<c:url value="/login"/>"><spring:message code="menu_login"/></a></li>
+        </sec:authorize>
     </ul>
 </header>
 <div class="wrapper">

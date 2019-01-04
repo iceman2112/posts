@@ -61,7 +61,7 @@ public class UserService {
         final String passwordHash = passwordEncoder.encode(password);
 
         User user = userRepository.findByLogin(login);
-        if (user == null) return;
+        if (user != null) return;
 
         user = new User();
         user.setLogin(login);
