@@ -1,9 +1,7 @@
 package tatun.model;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class User {
@@ -21,11 +19,12 @@ public class User {
     @Column (nullable = false)
     private String password;
 
-    @Column (nullable = false)
-    private String email;
-
-    @ManyToMany(mappedBy = "users")
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
     public int getId() {
         return id;
@@ -59,19 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }
